@@ -1,6 +1,7 @@
+import json
+
 import pandas as pd
 import numpy as np
-import json
 
 __all__ = ['to_df']
 
