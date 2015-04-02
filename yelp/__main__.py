@@ -73,6 +73,7 @@ def main():
             'to_'+args.factory,
             filename,
             chunksize=1028,
+            encoding='utf-8',
         )
         factory(df)
 
