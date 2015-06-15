@@ -139,9 +139,6 @@ Technical Challenges
 2. Highly Networked Data Structures
 3. User Sentiment Analysis
 
-.. figure:: http://i.imgur.com/LRuQh0N.gif
-   :alt:
-
 Proposed Solutions
 ==================
 
@@ -229,9 +226,6 @@ Remote JSON to DataFrame
         cols = [k for k,v in dtypes.items() if v in [dict, list]]
         return sf[cols]
 
-.. figure:: http://i.imgur.com/JzaJ7s6.gif
-   :alt:
-
 Holy Crap Evil Unicorn Power
 ============================
 
@@ -310,9 +304,6 @@ garbage collected
                                       'type.1': 'user_type',
                                       'average_stars': 'user_avg_stars',
                                       'review_count' : 'user_review_count'})
-
-.. figure:: http://i.imgur.com/wggPoky.gif
-   :alt:
 
 .. code-block:: python
 
@@ -563,9 +554,6 @@ Data Science stuff
     </div>
 
 
-.. figure:: http://i.imgur.com/iv8xcTU.gif
-   :alt:
-
 .. code-block:: python
 
     display_javascript(train_set['city'].show())
@@ -577,9 +565,6 @@ Train Regression Model!
 =======================
 
 --------------
-
-.. figure:: http://i.imgur.com/iDRoqCb.gif
-   :alt:
 
 .. code-block:: python
 
@@ -621,9 +606,6 @@ Train Regression Model!
     {'max_error': 4.016124743972821, 'rmse': 0.9706849263734884}
 
 
-
-.. figure:: http://i.imgur.com/uN2FbbK.gif
-   :alt:
 
 .. code-block:: python
 
@@ -778,9 +760,6 @@ Or even 100X!
     PROGRESS: +-----------+----------+-----------+--------------+--------------------+----------------------+---------------+-----------------+
 
 
-.. figure:: http://i.imgur.com/EyV29mp.gif
-   :alt:
-
 Dictionary and List Features
 ============================
 
@@ -854,9 +833,6 @@ Using Review Category Tags
     PROGRESS: | 10        | 18       | 1.000000  | 3.995491     | 3.857460           | 6.684582             | 0.818123      | 1.187864        |
     PROGRESS: +-----------+----------+-----------+--------------+--------------------+----------------------+---------------+-----------------+
 
-
-.. figure:: http://i.imgur.com/W3gTgHC.gif
-   :alt:
 
 Text Data: Using Raw Review Data
 ================================
@@ -1013,14 +989,8 @@ Text Data: Using Raw Review Data
 
 
 
-.. figure:: http://i.imgur.com/vxcxbe5.gif
-   :alt:
-
 Insight from Bad Reviews
 ========================
-
-.. figure:: http://i.imgur.com/KUruZeB.gif
-   :alt:
 
 .. code-block:: python
 
@@ -1100,24 +1070,6 @@ Insight from Bad Reviews
 
     {'max_error': 6.253360542412668, 'rmse': 1.1452486861156776}
 
-
-
-Magic!
-======
-
-.. figure:: http://i.imgur.com/lDOUcN0.gif
-   :alt:
-
-Just kidding, it's just the internet
-====================================
-
-.. figure:: http://i.imgur.com/DDwEGGr.gif
-   :alt:
-
-.. figure:: http://i.imgur.com/qzfKPvB.gif
-   :alt:
-
-.. |a| image:: http://i.imgur.com/QEHb5lU.gif
 
 
 In Progress
