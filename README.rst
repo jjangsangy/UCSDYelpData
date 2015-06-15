@@ -18,7 +18,7 @@ Business objects contain basic information about local businesses. The
 information for visualizations, but note that you'll still need to
 comply with the API TOS. The fields are as follows:
 
-.. code:: json
+.. code-block:: json
 
     {
       'type': 'business',
@@ -49,7 +49,7 @@ on votes Yelp users have cast on the review. Use user\_id to associate
 this review with others by the same user. Use business\_id to associate
 this review with others of the same business.
 
-.. code:: json
+.. code-block:: json
 
     {
       'type': 'review',
@@ -73,7 +73,7 @@ User Objects
 User objects contain aggregate information about a single user across
 all of Yelp (including businesses and reviews not in this dataset).
 
-.. code:: json
+.. code-block:: json
 
     {
       'type': 'user',
@@ -104,7 +104,7 @@ The dataset comprises three tables that cover
 Link to `Official Yelp
 Website <http://www.yelp.com/dataset_challenge>`__
 
-.. code:: python
+.. code-block:: python
 
     import os
     import sys
@@ -152,11 +152,11 @@ Proposed Solutions
 S3 Remote File Streaming
 ========================
 
-.. code:: python
+.. code-block:: python
 
     from IPython.display import *
 
-.. code:: python
+.. code-block:: python
 
     def aws_config(cfg):
         """
@@ -194,7 +194,7 @@ S3 Remote File Streaming
 Key and Configuration Management
 ================================
 
-.. code:: python
+.. code-block:: python
 
     s3 = s3_signin()
 
@@ -203,7 +203,7 @@ Key and Configuration Management
 Remote JSON to DataFrame
 ========================
 
-.. code:: python
+.. code-block:: python
 
     def remote_json_loader(filename):
         """
@@ -235,7 +235,7 @@ Remote JSON to DataFrame
 Holy Crap Evil Unicorn Power
 ============================
 
-.. code:: python
+.. code-block:: python
 
     # Data On the Internet!
     aws   = 'https://s3-us-west-1.amazonaws.com/ds3-machine-learning/yelp/{file}.csv'
@@ -296,14 +296,14 @@ Structures into a more compact data structure.
 We join together based on user and business keys and the old objects get
 garbage collected
 
-.. code:: python
+.. code-block:: python
 
     review_business = review.join(business, how='inner', on='business_id')
     review_business = review_business.rename({'stars.1': 'business_avg_stars',
                                               'type.1' : 'business_type',
                                               'review_count': 'business_review_count'})
 
-.. code:: python
+.. code-block:: python
 
     user_review = review_business.join(user, how='inner', on='user_id')
     user_review = user_review.rename({'name.1': 'user_name',
@@ -314,7 +314,7 @@ garbage collected
 .. figure:: http://i.imgur.com/wggPoky.gif
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     yelp_reviews = user_review.join(review_business, on='review_id')
 
@@ -323,11 +323,11 @@ Split Testing and Training Set
 
 Data Science stuff
 
-.. code:: python
+.. code-block:: python
 
     train_set, test_set = yelp_reviews.random_split(0.8, seed=1)
 
-.. code:: python
+.. code-block:: python
 
     display(train_set.head(3))
 
@@ -566,7 +566,7 @@ Data Science stuff
 .. figure:: http://i.imgur.com/iv8xcTU.gif
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     display_javascript(train_set['city'].show())
 
@@ -581,7 +581,7 @@ Train Regression Model!
 .. figure:: http://i.imgur.com/iDRoqCb.gif
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     model = gl.linear_regression.create(train_set, target='stars',
                                         features = ['user_avg_stars','business_avg_stars',
@@ -609,7 +609,7 @@ Train Regression Model!
     PROGRESS: +-----------+----------+--------------+--------------------+----------------------+---------------+-----------------+
 
 
-.. code:: python
+.. code-block:: python
 
     model.evaluate(test_set)
 
@@ -625,7 +625,7 @@ Train Regression Model!
 .. figure:: http://i.imgur.com/uN2FbbK.gif
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     model.summary()
 
@@ -684,7 +684,7 @@ Well crap, just keep on the iterating!
 Iterate 10 More Times!
 ======================
 
-.. code:: python
+.. code-block:: python
 
     model = gl.linear_regression.create(yelp_reviews, target='stars',
                                         features = ['user_id','business_id',
@@ -724,7 +724,7 @@ Or even 100X!
 .. figure:: http://img3.wikia.nocookie.net/__cb20120228151221/dragonball/images/thumb/3/3e/Goku_Charges_Kaioken_Times_3.JPG/1023px-Goku_Charges_Kaioken_Times_3.JPG
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     model = gl.linear_regression.create(yelp_reviews, target='stars',
                                         features = ['user_id','business_id',
@@ -784,7 +784,7 @@ Or even 100X!
 Dictionary and List Features
 ============================
 
-.. code:: python
+.. code-block:: python
 
     train_set['votes'].head(3)
 
@@ -799,14 +799,14 @@ Dictionary and List Features
 
 
 
-.. code:: python
+.. code-block:: python
 
     tags_to_dict = lambda tags: dict(zip(tags, [1 for tag in tags]))
 
 Using Review Category Tags
 ==========================
 
-.. code:: python
+.. code-block:: python
 
     train_set['categories_dict'] = train_set.apply(lambda row: tags_to_dict(row['categories']))
     train_set['categories_dict'].head(5)
@@ -822,7 +822,7 @@ Using Review Category Tags
 
 
 
-.. code:: python
+.. code-block:: python
 
     model = gl.linear_regression.create(train_set, target='stars',
                                         features = ['user_id','business_id', 'categories_dict',
@@ -861,7 +861,7 @@ Using Review Category Tags
 Text Data: Using Raw Review Data
 ================================
 
-.. code:: python
+.. code-block:: python
 
     train_set['text'].head(1)
 
@@ -882,7 +882,7 @@ Text Data: Using Raw Review Data
 
 
 
-.. code:: python
+.. code-block:: python
 
     gen_blobs = (TextBlob(i) for i in train_set['text'])
     sample    = itertools.islice(gen_blobs, 0, 10)
@@ -1022,11 +1022,11 @@ Insight from Bad Reviews
 .. figure:: http://i.imgur.com/KUruZeB.gif
    :alt:
 
-.. code:: python
+.. code-block:: python
 
     train_set['negative_review_tags'] = gl.text_analytics.count_words(train_set['text'])
 
-.. code:: python
+.. code-block:: python
 
     bad_review_words = (
         'hate','terrible', 'awful', 'spit', 'disgusting', 'filthy', 'tasteless', 'rude',
@@ -1037,7 +1037,7 @@ Insight from Bad Reviews
     )
     train_set['negative_review_tags'] = train_set['negative_review_tags'].dict_trim_by_keys(bad_review_words, exclude=False)
 
-.. code:: python
+.. code-block:: python
 
     model = gl.linear_regression.create(train_set, target='stars',
                                         features = ['user_id', 'business_id', 'categories_dict', 'negative_review_tags',
@@ -1070,7 +1070,7 @@ Insight from Bad Reviews
     PROGRESS: +-----------+----------+-----------+--------------+--------------------+----------------------+---------------+-----------------+
 
 
-.. code:: python
+.. code-block:: python
 
     test_set['categories_dict'] = test_set.apply(lambda row: tags_to_dict(row['categories']))
     test_set['categories_dict'].head(5)
@@ -1086,7 +1086,7 @@ Insight from Bad Reviews
 
 
 
-.. code:: python
+.. code-block:: python
 
     test_set['negative_review_tags'] = gl.text_analytics.count_words(test_set['text'])
     test_set['negative_review_tags'] = test_set['negative_review_tags'].dict_trim_by_keys(bad_review_words, exclude=False)
@@ -1118,3 +1118,28 @@ Just kidding, it's just the internet
    :alt:
 
 .. |a| image:: http://i.imgur.com/QEHb5lU.gif
+
+
+In Progress
+=====================
+
+Graph of Elite Users' Connectedness
+-----------------------------------
+
+  - Review Data:
+    - The Review data set has the user reivews for each business.
+      This means that both an encrypted user id and business id is stored in the data set,
+      letting us know which user commented on which business.
+
+  - User Data:
+    - The User data set tells us detailed information about a user and their profile.
+      Distinguishes users who are elite from those that are non-elite
+
+Sentiment Analysis
+------------------
+
+  - Tip Data:
+    - The tip data set provides immediate updates from the user as sto their experience at a business.
+    - Entry is in text format (character strings)
+
+  - Review data set: The review data set includes a full user reviews in text format (character strings)

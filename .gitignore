@@ -56,5 +56,5 @@ env/**
 texts/**
 .idea/**
 data/**
-.ipython_notebook/**
+.ipynb_checkpoints/**
 # }}}
