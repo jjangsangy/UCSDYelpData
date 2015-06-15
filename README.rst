@@ -18,7 +18,7 @@ Business objects contain basic information about local businesses. The
 information for visualizations, but note that you'll still need to
 comply with the API TOS. The fields are as follows:
 
-.. code-block:: json
+.. code-block:: javascript
 
     {
       'type': 'business',
@@ -49,7 +49,7 @@ on votes Yelp users have cast on the review. Use user\_id to associate
 this review with others by the same user. Use business\_id to associate
 this review with others of the same business.
 
-.. code-block:: json
+.. code-block:: javascript
 
     {
       'type': 'review',
@@ -73,7 +73,7 @@ User Objects
 User objects contain aggregate information about a single user across
 all of Yelp (including businesses and reviews not in this dataset).
 
-.. code-block:: json
+.. code-block:: javascript
 
     {
       'type': 'user',
@@ -87,8 +87,6 @@ all of Yelp (including businesses and reviews not in this dataset).
         'cool': (count of cool votes across all reviews)
       }
     }
-
-|a|
 
 
 The task is to predict the 'star rating' for a restaurant for a given
@@ -612,7 +610,7 @@ Train Regression Model!
     model.summary()
 
 
-.. parsed-literal::
+.. code-block::
 
     Class                         : LinearRegression
 
@@ -766,9 +764,6 @@ Dictionary and List Features
 .. code-block:: python
 
     train_set['votes'].head(3)
-
-
-
 
 .. parsed-literal::
 
